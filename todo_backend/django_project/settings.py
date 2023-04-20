@@ -37,11 +37,37 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # local
+    "boards.apps.BoardsConfig",
+    "apis.apps.ApisConfig",
+    # 3rd part
+    "rest_framework",
+    "drf_spectacular",
+    "corsheaders",
 ]
+
+
+CORS_ORIGIN_WHITELIST = (
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:5500",
+)
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5500"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Discussion Board APIs",
+    "DESCRIPTION": "A simple API page",
+    "VERSION": "1.0.0",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

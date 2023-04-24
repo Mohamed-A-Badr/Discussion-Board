@@ -1,16 +1,22 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .serializers import BoardSerializer, TopicSerializer, PostSerializer
 from boards.models import Board, Topic, Post
 from django.shortcuts import get_object_or_404
+from .permissions import IsAuthorOrReadOnly
 
 
 # Create your views here.
 class BoardViewSet(viewsets.ModelViewSet):
+    permission_classes = (
+        IsAuthorOrReadOnly,
+        permissions.IsAdminUser,
+    )
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 
 
 class TopicViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthorOrReadOnly,)
     serializer_class = TopicSerializer
 
     def get_queryset(self):
@@ -28,6 +34,7 @@ class TopicViewSet(viewsets.ModelViewSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthorOrReadOnly,)
     serializer_class = PostSerializer
 
     def get_queryset(self):

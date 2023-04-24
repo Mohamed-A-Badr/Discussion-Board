@@ -11,10 +11,10 @@ class BoardSerializer(serializers.ModelSerializer):
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ("id", "subject", "board", "created_by")
+        fields = ("id", "subject")
 
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ("id", "content", "topic", "created_by")
+        fields = ("id", "content")

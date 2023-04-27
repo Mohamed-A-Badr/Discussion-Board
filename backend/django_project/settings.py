@@ -59,7 +59,9 @@ CORS_ORIGIN_WHITELIST = (
     "http://127.0.0.1:5500",
 )
 
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5500"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5500",
+]
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
@@ -163,3 +165,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)

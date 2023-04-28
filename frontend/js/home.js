@@ -63,9 +63,12 @@ fetch("http://127.0.0.1:8000/api/v1/boards/", {
       const table_board = document.createElement("td");
       const ancher_board = document.createElement("a");
       ancher_board.setAttribute("data-board-id", element.id);
+      ancher_board.classList.add("link-primary");
+      ancher_board.classList.add("text-decoration-none");
       ancher_board.innerHTML = element.name;
 
       // redirect to topic page
+      ancher_board.style.cursor = "pointer";
       ancher_board.addEventListener("click", function () {
         const boardId = this.getAttribute("data-board-id");
         redirectToTopicPage(boardId);

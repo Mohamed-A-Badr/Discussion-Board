@@ -10,6 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (token) {
     // User is logged in, show the logged-in section
+    fetch("http://localhost:8000/api/v1/users", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        var greet = document.getElementById("greeting");
+        if (res.ok) {
+          res.json().then((data) => {
+            console.log(data);
+            greet.innerHTML = "Welcome " + data.username;
+          });
+        } else {
+          greet.innerHTML = "Welcome " + data.username;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     loggedInSection.item(0).style.display = "none";
     loggedOutSection.item(0).style.display = "block";
   } else {

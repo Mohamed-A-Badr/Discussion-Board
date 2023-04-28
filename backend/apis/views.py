@@ -1,8 +1,17 @@
 from rest_framework import viewsets, permissions
-from .serializers import BoardSerializer, TopicSerializer, PostSerializer
+from .serializers import (
+    BoardSerializer,
+    TopicSerializer,
+    PostSerializer,
+    UserSerializer,
+)
 from boards.models import Board, Topic, Post
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, Http404
 from .permissions import IsAuthorOrReadOnly
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -51,3 +60,16 @@ class PostViewSet(viewsets.ModelViewSet):
         topic_id = self.kwargs.get("topic_id")
         topic = get_object_or_404(Topic, board__pk=board_id, pk=topic_id)
         serializer.save(topic=topic, created_by=self.request.user)
+
+
+class UserAPI(APIView):
+    def get(self, request):
+        try:
+            authorization_header = request.headers.get("Authorization")
+            token = authorization_header.split(" ")[1]
+            user_id = Token.objects.get(key=token).user_id
+        except Token.DoesNotExist:
+            raise Http404()
+        user = get_object_or_404(User, pk=user_id)
+        serializer = UserSerializer(user)
+        return Response(data=serializer.data)

@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import BoardViewSet, TopicViewSet, PostViewSet
+from .views import BoardViewSet, TopicViewSet, PostViewSet, UserAPI
 from django.urls import path, include
 
 board_router = DefaultRouter()
@@ -15,4 +15,5 @@ urlpatterns = [
     path("", include(board_router.urls)),
     path("boards/<int:board_id>/", include(topic_router.urls)),
     path("boards/<int:board_id>/topics/<int:topic_id>/", include(post_router.urls)),
+    path("users", UserAPI.as_view()),
 ]

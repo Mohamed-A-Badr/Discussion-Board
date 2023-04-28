@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from boards.models import Board, Topic, Post
+from django.contrib.auth.models import User
 
 
 class BoardSerializer(serializers.ModelSerializer):
@@ -11,10 +12,16 @@ class BoardSerializer(serializers.ModelSerializer):
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ("id", "subject")
+        fields = ("id", "subject", "board", "created_by", "created_dt")
 
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ("id", "content")
+        fields = ("id", "content", "topic", "created_by", "created_dt")
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "username", "email", "first_name", "last_name")

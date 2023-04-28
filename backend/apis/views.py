@@ -16,10 +16,6 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = (
-        IsAuthorOrReadOnly,
-        permissions.IsAdminUser,
-    )
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 

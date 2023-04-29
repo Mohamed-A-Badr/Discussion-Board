@@ -44,7 +44,7 @@ function login() {
 }
 
 function redirectHomePage() {
-  window.location.href = "http://127.0.0.1:5500/frontend/html/home.html";
+  window.location.href = "../html/home.html";
 }
 
 window.addEventListener("DOMContentLoaded", function () {

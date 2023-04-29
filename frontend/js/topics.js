@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const loggedInSection = document.getElementsByClassName("loginSection");
   const loggedOutSection = document.getElementsByClassName("logoutSection");
 
-  console.log(token);
-
   if (token) {
     fetch("http://localhost:8000/api/v1/users", {
       method: "GET",
@@ -16,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var greet = document.getElementById("greeting");
         if (res.ok) {
           res.json().then((data) => {
-            console.log(data);
             greet.innerHTML = "Welcome " + data.username;
           });
         } else {
@@ -37,13 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
 const urlParams = new URLSearchParams(window.location.search);
 const boardId = urlParams.get("boardId");
 
+window.onload = function () {
+  if (token) {
+    const topicContainer = document.getElementById("topic-container");
+    const newTopicAncher = `<a href="../html/new_topic.html?boardId=${boardId}" class="btn btn-primary">New Topic</a>`;
+    topicContainer.insertAdjacentHTML("afterbegin", newTopicAncher);
+  }
+};
+
 const table_content = document.getElementsByClassName("topic-content");
 
 fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Token ${token}`,
   },
 })
   .then((res) => {
@@ -54,7 +58,6 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
     }
   })
   .then((data) => {
-    console.log(data);
     const topic_data = Array.from(data);
     topic_data.forEach((element) => {
       const table_row = document.createElement("tr");
@@ -101,6 +104,6 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
   });
 
 function redirectToTopicPage(topicdId) {
-  url = `http://127.0.0.1:5500/frontend/html/posts.html?topicId=${topicId}`;
+  url = `../html/posts.html?topicId=${topicId}`;
   window.location.href = url;
 }

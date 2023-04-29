@@ -40,7 +40,6 @@ fetch("http://127.0.0.1:8000/api/v1/boards/", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Token ${token}`,
   },
 })
   .then((res) => {
@@ -54,9 +53,6 @@ fetch("http://127.0.0.1:8000/api/v1/boards/", {
     console.log(data);
     const board_data = Array.from(data);
     board_data.forEach((element) => {
-      console.log(element);
-      console.log(element.name);
-      console.log(element.description);
       const table_row = document.createElement("tr");
 
       // board data
@@ -108,6 +104,6 @@ fetch("http://127.0.0.1:8000/api/v1/boards/", {
   });
 
 function redirectToTopicPage(boardId) {
-  url = `http://127.0.0.1:5500/frontend/html/topics.html?boardId=${boardId}`;
+  url = `../html/topics.html?boardId=${boardId}`;
   window.location.href = url;
 }

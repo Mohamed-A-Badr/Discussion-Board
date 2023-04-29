@@ -17,11 +17,11 @@ class BoardSerializer(serializers.ModelSerializer):
 
 class TopicSerializer(serializers.ModelSerializer):
     created_by = serializers.SerializerMethodField()
-    created_dt = serializers.DateTimeField(format="%B %d, %Y %I:%M %p")
+    created_dt = serializers.DateTimeField(format="%B %d, %Y %I:%M %p", required=False)
 
     class Meta:
         model = Topic
-        fields = ("id", "subject", "board", "created_by", "created_dt")
+        fields = ("id", "subject", "created_by", "created_dt")
 
     def get_created_by(self, obj):
         user = obj.created_by
@@ -31,11 +31,11 @@ class TopicSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     created_by = serializers.SerializerMethodField()
-    created_dt = serializers.DateTimeField(format="%B %d, %Y %I:%M %p")
+    created_dt = serializers.DateTimeField(format="%B %d, %Y %I:%M %p", required=False)
 
     class Meta:
         model = Post
-        fields = ("id", "content", "topic", "created_by", "created_dt")
+        fields = ("id", "content", "created_by", "created_dt")
 
     def get_created_by(self, obj):
         user = obj.created_by

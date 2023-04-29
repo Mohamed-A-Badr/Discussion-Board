@@ -16,8 +16,14 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 class BoardViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny,)
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
+
+    def handle_exception(self, exc):
+        if isinstance(exc, Exception):
+            print(exc)
+        return super().handle_exception(exc)
 
 
 class TopicViewSet(viewsets.ModelViewSet):
@@ -36,6 +42,11 @@ class TopicViewSet(viewsets.ModelViewSet):
         board_id = self.kwargs.get("board_id")
         board = get_object_or_404(Board, pk=board_id)
         serializer.save(board=board, created_by=self.request.user)
+
+    def handle_exception(self, exc):
+        if isinstance(exc, Exception):
+            print(exc)
+        return super().handle_exception(exc)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -56,6 +67,11 @@ class PostViewSet(viewsets.ModelViewSet):
         topic_id = self.kwargs.get("topic_id")
         topic = get_object_or_404(Topic, board__pk=board_id, pk=topic_id)
         serializer.save(topic=topic, created_by=self.request.user)
+
+    def handle_exception(self, exc):
+        if isinstance(exc, Exception):
+            print(exc)
+        return super().handle_exception(exc)
 
 
 class UserAPI(APIView):

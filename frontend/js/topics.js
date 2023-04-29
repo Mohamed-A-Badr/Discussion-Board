@@ -103,7 +103,7 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
     });
   });
 
-function redirectToTopicPage(topicdId) {
-  url = `../html/posts.html?topicId=${topicId}`;
+function redirectToPostPage(topicId) {
+  url = `../html/posts.html?boardId=${boardId}&topicId=${topicId}`;
   window.location.href = url;
 }

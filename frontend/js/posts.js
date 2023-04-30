@@ -54,6 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const boardId = urlParams.get("boardId");
   const topicId = urlParams.get("topicId");
 
+  ancherReply.addEventListener("click", function () {
+    window.location.href = `../html/new_post.html?boardId=${boardId}&topicId=${topicId}`;
+  });
+
   fetch(
     `http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/${topicId}/posts/`,
     {

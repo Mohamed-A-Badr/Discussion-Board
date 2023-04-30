@@ -83,10 +83,10 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
       table_created_by.innerHTML = element.created_by;
 
       const table_post = document.createElement("td");
-      table_post.innerHTML = "#";
+      table_post.innerHTML = element.no_posts;
 
       const table_views = document.createElement("td");
-      table_views.innerHTML = "#";
+      table_views.innerHTML = 0;
 
       const table_created_dt = document.createElement("td");
       table_created_dt.innerHTML = element.created_dt;

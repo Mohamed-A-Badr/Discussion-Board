@@ -79,15 +79,15 @@ fetch("http://127.0.0.1:8000/api/v1/boards/", {
 
       // Post data
       const table_post = document.createElement("td");
-      table_post.innerHTML = "#";
+      table_post.innerHTML = element.no_posts;
 
       // Topic data
       const table_topic = document.createElement("td");
-      table_topic.innerHTML = "#";
+      table_topic.innerHTML = element.no_topics;
 
       // Last post data
       const table_last_post = document.createElement("td");
-      table_last_post.innerHTML = "#";
+      table_last_post.innerHTML = element.last_post;
 
       // appending all data to table row
       table_row.appendChild(table_board);

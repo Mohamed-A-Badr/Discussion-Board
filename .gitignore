@@ -131,3 +131,5 @@ dmypy.json
 .idea/
 
 .vscode/
+
+!/frontend/html/home.html

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loggedOutSection = document.getElementsByClassName("logoutSection");
 
   if (token) {
-    fetch("http://localhost:8000/api/v1/users", {
+    fetch("https://badr3801-board-backend.herokuapp.com/api/v1/users", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -44,12 +44,15 @@ window.onload = function () {
 
 const table_content = document.getElementsByClassName("topic-content");
 
-fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
+fetch(
+  `https://badr3801-board-backend.herokuapp.com/api/v1/boards/${boardId}/topics/`,
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+)
   .then((res) => {
     if (res.ok) {
       return res.json();
@@ -85,9 +88,6 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
       const table_post = document.createElement("td");
       table_post.innerHTML = element.no_posts;
 
-      const table_views = document.createElement("td");
-      table_views.innerHTML = 0;
-
       const table_created_dt = document.createElement("td");
       table_created_dt.innerHTML = element.created_dt;
 
@@ -95,7 +95,6 @@ fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
       table_row.appendChild(table_topic);
       table_row.appendChild(table_created_by);
       table_row.appendChild(table_post);
-      table_row.appendChild(table_views);
       table_row.appendChild(table_created_dt);
 
       // appending table row to table content

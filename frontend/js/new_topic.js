@@ -19,14 +19,17 @@ function newTopic() {
     subject: subject,
   };
   console.log(JSON.stringify(topicData));
-  fetch(`http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-    },
-    body: JSON.stringify(topicData),
-  })
+  fetch(
+    `https://badr3801-board-backend.herokuapp.com/api/v1/boards/${boardId}/topics/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify(topicData),
+    }
+  )
     .then((res) => {
       if (res.status === 201) {
         alert("Topic created successfully!");

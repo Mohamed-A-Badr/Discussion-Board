@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loggedOutSection = document.getElementsByClassName("logoutSection");
 
   if (token) {
-    fetch("http://localhost:8000/api/v1/users", {
+    fetch("https://badr3801-board-backend.herokuapp.com/api/v1/users", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   fetch(
-    `http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/${topicId}/posts/`,
+    `https://badr3801-board-backend.herokuapp.com/api/v1/boards/${boardId}/topics/${topicId}/posts/`,
     {
       method: "GET",
       headers: {

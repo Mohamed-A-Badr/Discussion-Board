@@ -24,7 +24,7 @@ function newPost() {
   };
   console.log(JSON.stringify(postData));
   fetch(
-    `http://127.0.0.1:8000/api/v1/boards/${boardId}/topics/${topicId}/posts/`,
+    `https://badr3801-board-backend.herokuapp.com/api/v1/boards/${boardId}/topics/${topicId}/posts/`,
     {
       method: "POST",
       headers: {

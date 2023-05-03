@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log(token);
 
   if (token) {
-    fetch("http://localhost:8000/api/v1/users", {
+    fetch("https://badr3801-board-backend.herokuapp.com/api/v1/users", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const table_content = document.getElementsByClassName("board-content");
 
-fetch("http://127.0.0.1:8000/api/v1/boards/", {
+fetch("https://badr3801-board-backend.herokuapp.com/api/v1/boards/", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",

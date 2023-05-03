@@ -17,13 +17,16 @@ function signup() {
     password2: password2,
   };
 
-  fetch("http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(signupData),
-  })
+  fetch(
+    "https://badr3801-board-backend.herokuapp.com/api/v1/dj-rest-auth/registration/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signupData),
+    }
+  )
     .then((response) => {
       if (response.status === 204) {
         alert("Signup successful!");

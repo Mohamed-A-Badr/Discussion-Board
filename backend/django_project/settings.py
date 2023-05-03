@@ -62,10 +62,12 @@ INSTALLED_APPS = [
 CORS_ORIGIN_WHITELIST = (
     "http://127.0.0.1:8000",
     "http://127.0.0.1:5500",
+    "https://mohamed-a-badr.github.io/",
 )
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5500",
+    "https://mohamed-a-badr.github.io/",
 ]
 
 REST_FRAMEWORK = {
